@@ -135,4 +135,58 @@ This value is used to control the dropout rate
 Find K neighbour around it and then calculate the maximum number of those data points belong to and then classify the data point into that class. It is supervise learning. Lazy learner because it involves minimal training of model and does not use training data to make generalization on unseen dataset.
 
 ##### 34. Why add bias
-Y = W*x + b: it is linear so without biases, what if all the input x are 0 then no neuron is gonna fired so adding a bias can make them still responsible for the input	
+Y = W\*x + b: it is linear so without biases, what if all the input x are 0 then no neuron is gonna fired so adding a bias can make them still responsible for the input	
+
+##### 35. Logistic regression
+it is a technique to output a binary outcome from a linear combination of predictor variables. For example, if you want to predict whether a political leader will win the election or not, then the prediction is binary (0/1) (lose/win). The predictor variables here would be the amount of money spent for election campaigning of a particular candidate, the amount of time spent in campaigning, etc.
+
+##### 36. Normal distribution
+data is usually distributed in different ways with a bias to the left or to the right or it can all be jumbled up. However, there are chances that data is distributed around a central value without any bias to the left or right and reaches normal distribution in the form of a bell shaped curve. The random variables are distributed in the form of an symmetrical bell shaped curve.
+
+##### 37. Linear regression
+it is used to find the linear relationship between target and one or more predictors. There are two types: simple and multiple. simple: find the relationship between two continuous variables, one is predictor and the other is response.
+
+##### 38. Interpolation and Extrapolation
+Estimating a value from 2 known values from a list of values is Interpolation. Extrapolation is approximating a value by extending a known set of values or facts.
+
+##### 39. K-means clustering
+K-means clustering is a type of unsupervised learning, which is used when you have unlabeled data (i.e., data without defined categories or groups). The goal of this algorithm is to find groups in the data, with the number of groups represented by the variable K. The algorithm works iteratively to assign each data point to one of K groups based on the features that are provided. Data points are clustered based on feature similarity
+
+##### 40. Collaborative filtering
+The process of filtering used by most of the recommender systems to find patterns or information by collaborating viewpoints, various data sources and multiple agents.
+
+##### 41. Are expected value and mean value different?
+* mean: the arithmetic mean which means the sum divided by the total number of observations. 
+* expectation: the connotation is that this is a theoretical mean. For example flipping a coin 10 times, 1 for heads and 0 for tails, then you get 6 for heads and 4 for tails, then mean is (1*6 + 0*4) / 10 = 0.6 but expectation is (0.5*0 + 0.5*1)=0.5
+
+##### 42. P-value 
+it is used to determine the significance of results after a hypothesis test in statistics. It helps reader to draw conclusions and is always between 0 and 1<br >
+* P-value > 0.05 the null hypothesis can not be rejected
+* P-value <= 0.05 the null hypothesis can be rejected
+* P-value = 0.05 it is possible to go either way
+
+##### 43. Recommender
+SVD is a matrix factorization technique that use to reduce space dimension of n to k where k < n. It can be thought of finding 2 matrix whose product is the original matrix. (user-item rating matrix). Each item can be represented by a vector `qi`. Similarly each user can be represented by a vector `pu` such that the dot product of those 2 vectors is the expected rating. `qi` and `pu` can be found in such a way that the square error difference between their dot product and the known rating in the user-item matrix is minimum. Minimize (p,q) sum (r-q^Tp)^2
+
+* Surprise: to implement SVD (singular value decomposition)
+* Spark mllib: to fill the missing entries of a user-item association matrix. In spark mllib als algorithm to learn the latent factors
+* ALS: it is also a matrix factorization algorithm
+* Movielen dataset: 27k movies, 138k users
+
+
+##### 44. Sentence similarity
+remove the stops words and then run word2vec on the words in both sentences and sum up the vectors in one sentence, and sum up the vectors in the other sentence and then find the difference between the sums. In this way, we don’t need to worry about the order in the sentence. But it is not a very good solution.
+
+##### 45. Word2vec
+It encodes the semantic meaning of words into dense vectors. It contains two distinct models: CBOW and Skip-gram with or without negative sampling, they are both shallow neural models.
+* main idea: distributional hypothesis similar words appear in similar contexts of words around them. Word2vec model using a single hidden layer and fully connected neural network. The neutrons in the hidden layer are all linear neutrons. The input layer has same number neutrons as the words in the vocabulary for training. The hidden layer size is set to the dimensionality of the resulting word vectors. The size of the output is the same the input layer.
+* cbow:  given several words, learn to predict the word by the context, or maximize the probability of the target word by looking at the context
+* skip-gram: given a word, learn to predict the context 
+
+Word2vec has a large amount of corpus and it aims at news field. So if you are training a model that generating poem then word2vec might not be a good choice for you. To train your own word2vec model, we can import the word2vec model trained by google first and then feed your own dataset into it. The model is actually a three layer models. This really require a large amount of data to make it more accurate because it encodes the semantic information.
+
+##### 46. How to compute TF-IDF matrix:
+List all the words appear in all of the documents, and then the first column is the name of documents. TF: For each word in each document, calculate the occurrence in that document / total number of words in that document. IDF: log(total number of documents / the number documents that contain that word), then TF\*IDF. Then for each document we can view it as a vector with these values so that we can calculate the cosine similarity or other kind of similarity methods.cosine similarity =  Ab / |a| |b|
+
+##### 47. SVM
+SVM is a discriminative classifier formally defined by a separating hyperplane. Given labeled training data, the algorithm outputs an optimal hyperplane which categorizes new examples. In 2D, the hyperplane is a line dividing a plane in two parts where in each class lay in either side. If it is not linear in a certain dimension, we can use kernel. (Such as a circle) there is no line that can separate the two classes in x-y plane so we apply transformation and add one more dimension as we call it z-axis. Let us assume value of points on z plane, w = x^2 + y^2. Then we have a line. And we transform back the data
