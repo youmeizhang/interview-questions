@@ -123,3 +123,10 @@ Encapsulation
 Scope Resolution Operator
 
 #### 40. Static method can not use non static members
+
+#### 41. The advantages of object oriented programming
+5 features of OOP: inheritance, polymorphism, encapsulation, data abstraction
+* code reuse and recycling
+* encapsulation: once object is created, knowledge of its implementation is not necessary for its use. In older programs, coders needed to understand the details of a piece of code before using it. Objects have the ability to hide certain parts of themselves from programmers
+* design benefit: it forces software engineer to go through an extensive planning phrase.
+* software maintenance: easier to modify and maintain
