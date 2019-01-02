@@ -278,3 +278,55 @@ No label but something similar to label: reward, can decide if this decision is 
 
 #### 69. Why Svm is better than other
 good generalization ability due to its algorithm. It uses margin, so this is the description of the data distribution. 得到对数据分布的结构化描述，因此减低了对数据规模和数据分布的要求. 它是一个凸优化问题，因此局部最优解一定是全局最优解的优点
+
+#### 70. Classification
+* binary classification problem, we can use logistic regression. Logistic function: sigmoid function S-shaped curve that take any real-valued number and map it into a value between 0 and 1.
+
+* Cross Entropy measures the performance of a classification model where the prediction input is a probability value between 0 and 1
+
+#### 71. Why entropy is a better way to measure the performance of a model?
+It can reflect the uncertainty. 
+
+#### 72. Loss function
+* Cross Entropy: it increases as the predicted probability diverges from the actual label. (cross-entropy and log loss are slightly different depending on context, but in ML when calculating error rates between 0 and 1 they resolve to the same thing)
+* MSE: mean squared error L2 loss sum(square of subtraction value between real value and predicted value) / size
+* Hinge
+* Huber
+* KL-Divergence
+* MAE: mean absolute error or L1 loss
+
+#### 73. Accuracy
+the count of predictions where predicted value equals to the actual value
+log loss: takes into account of uncertainty of your prediction based on how much it varies fro the actual label
+
+#### 74. Text similarity
+* jaccard similarity: size of intersection divided by size of union of two sets (no need to convert into vector)
+* cosine similarity: cosine of angle between two vectors, so need to convert sentences into vectors, one way to do that: bag of words with TF or TF-IDF
+** calculate the term frequency using bag of words
+** normalize the term frequency with the respective magnitudes or L2 norms
+** dot product
+
+#### 75. How word2vec works
+
+#### 76. Feedforward propagation and back forward propagation
+
+#### 77. Validation set and test set difference
+
+#### 78. How do you tune the model
+
+#### 79. Restful 
+
+#### 80. How would you improve the throughput of a model? For example, so many photos at the same time in a website
+
+#### 81. Forward propagation
+We start from the input we have, we pass them through the network layer and calculate the actual output of the model straight forwardly. Because the calculation flow is going in the natural forward direction from the input through the neural network to the output, it is called forward propagation
+
+#### 82. Backpropagation
+It is to update each of the weights in the network so that they cause the output to be closer to the target output, so it can minimize the error for each output neuron and the network. It calculates the gradient and then send the gradient to the optimizer so as to update the weights. Backpropagation is usually used to find the gradients of the weights and biases with respect to the cost.
+
+#### 83. Transfer learning
+* ConvNet as fixed feature extractor: remove FC layer 
+* Fine-tuning the ConvNet: replace and retrain the classifier on top of ConvNet on the new dataset, fine-tune the weights of the pertained network by continuing the backpropagation. Maybe fine-tune the last few layers specifically
+* Pretrained models: since it takes a long time to train
+
+
