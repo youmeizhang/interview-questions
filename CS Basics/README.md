@@ -224,3 +224,65 @@ It means running several different programs at the same time concurrently by inv
 *	reduce() – repeatedly performs a pair-wise reduction on a sequence until a single value is computed. reduce把结果继续和序列的下一个元素做累积计算
 
 #### 57. The argument given for the set must be an iterable. Not correct: set([[1,2],[3,4]])
+
+#### 58. Decorator
+Decorators are callable objects which are used to modify functions or classes. Function decorators are functions which accepts function reference as arguments and adds a wrapper around them and returns the function with the wrapper as a new function
+
+### Other
+
+#### 1. PKI: public key infrastructure
+Purpose: to facilitate the secure electronic transfer information for a range of network activities such as e-commerce, internet banking.. when simple passwords are inadequate authorization method, a more rigorous proof is required to confirm the identity of the parties involved in the communication. Then an organization establishes and maintains a trustworthy networking environment by data encryption and high levels of authentication.
+
+比尔自己的私人钥匙就是private key, 他发给别人的证明书的钥匙就是public key，所有通过这个私人钥匙加密的文件只有通过比尔自己的私人钥匙才能打开。
+
+Public-key encryption and digital signature services
+
+#### 2. Oauth
+To make client get the authorization of a user and interact with HTTP service. Just as you need to print the photos that stored in google cloud and then a website can help to print the photos for you. Then printing website need to have the right to access your photos. If you just use simple username and password then there will be some serious problems for this. 
+* Client will remember your password and username, but you don’t want that. 
+* Google need to have the log in process designed for you but that is not safe. You can not control which kind of documents can be accessed by client, because it can access all of your information there. User can only withdraw this authorization by changing the password which is very inconvenient.
+* Once the third-party application is destroyed or hacked by others then users information can be stolen by them easily.
+
+Oauth: have a authorization layer between client and http server. Then the client can only access the authorization layer using the tokens that it gets. The token is different from users’ password so this can be separated. Then the user can decide the time and scope of authority so that the client is not accessing other information that users have. After client log in to the authorization layer, the http server can open the information stored there by recognizing the tokens.
+
+
+#### 3. http
+http is designed to enable communications between clients and servers. A web application might be the client and the application on a computer that hosts a web site might be the server. For example, a browser sends the http request to the server then the server return a response to the client. The response contains status information about the request and may also contain the requested content. There are several methods: 
+
+* get: request data from a specified resource
+* post: send data to a server to create / update a resource
+* put: sent data to a server to create / update a resource
+
+Difference between post and put: calling the put request multiple times will always produce the same result but calling a post request repeatedly will have side effects of creating the same resource multiple times
+
+head: same as get, but with the response body
+
+#### 4. TCP/IP
+It specifies how data is exchanged over the internet by providing end-to-end communications that identify how it should be broken into packets, addressed, transmitted, routed and received at the destination. 
+
+It is divided into four layers. 
+* Application layer 
+* Transport layer: is responsible for maintaining end-to-end communications across the network 
+* Network layer: also internet layer, deals with packets and connects independent networks to transport the packets across network boundaries. 
+* Physical layer
+
+advantages: it is compatible with all operating systems, so it can communicate with any other system. It is highly scalable and as a routable protocol, can determine the most efficient path through the network
+	
+#### 5. Make automake cmake
+* make: use to execute makefile. In C or C++, when we only have one source file, then we can use gcc to compile it but what if we have lots of files and they have some dependency, then we can not do it one by one so we have make.
+* makefile is kind of similar to batch processing script file, its basic syntax is like: target, dependency and then command, for example when we need to compile c file, then we can make the makefile like this: 
+	
+** hello: hello.o gcc -o hello hello.o     
+** hello.o: hello.c gcc -c hello.c
+
+however, for make and makefile they are under the environment in such as unix and it is not friendly to windows users so that is why we have cmake which is for cross-platform project management tool. For cmake, we have cmakelists.txt file. 
+
+Therefore, make is used to execute makefile  and cmake is used to execute cmakelists.txt. if the project is not large we can write the makefile manually but what if is very large we can use automate to generate the makefile for us.
+	
+#### 6. Docker
+For software development, one difficulty is about setting the environment because we have different kinds of os, so how can we ensure that a program can run in different machines. So that is people proposed virtual machine that you only need to develop in one environment and then it can run in other machines too. however, there are some disadvantages about vm. It will take lots of resource in your computer such as memory and space. second, it is very complex to finish it and it is slow. So then linux proposed linux container to solve the above problems. Linux container is not a whole os, but it tries to separate the different processes. So it is fast, take less resources and the container is small. So docker is one of the wrapping of linux container which provide very friendly api. Docker will put the program and its dependencies inside one folder and once this folder is executed, a virtual container will be generated and the program will run inside this container. You don’t need to worry about the environment anymore. 
+ 
+#### 7. Linux command line
+* cd, cd -, pwd, dirs, ls, cat filename.txt, grep, nano, 
+* manipulate files: cp, mv, rm -rf folder, mkdir, chmod, chown  
+* system info: df, free, top, ifconfig
