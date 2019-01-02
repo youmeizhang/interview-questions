@@ -228,6 +228,139 @@ It means running several different programs at the same time concurrently by inv
 #### 58. Decorator
 Decorators are callable objects which are used to modify functions or classes. Function decorators are functions which accepts function reference as arguments and adds a wrapper around them and returns the function with the wrapper as a new function
 
+
+#### 59. graph questions: how to traverse a directed graph
+linked list and arrays are linear, tree and graph are non-linear. Directed graph has no cycle (directed acyclic graph DAG)
+* bfs or dfs
+* bfs: (use visited array)
+```Python
+def bfs(graph, start, end):
+	visited, queue = set(), collections.deque([start])
+	visited.add(start)
+	while(queue):
+		vertex = queue.popleft()
+		for neighbour in graph[vertex]:
+			if neighbour not in visited:
+				visited.add(neighbour)
+				queue.append(neighbour)
+```
+```Python
+def bfs_shortest_path(garph, start, end):
+	visited = []
+	queue = [[start]]
+	while(queue):
+		path = queue.pop(0)
+		node = path[-1]
+		if node not in visited:
+			neighbours = graph[node]
+			for neighbour in neighbours:
+				new_path = list(path)
+				new_path.append(neighbour)
+				queue.append(new_path)
+				if neighbour == end:
+					return new_path
+			visited.append(node)
+
+def dfs(graph): #recursively running dfs 
+```
+
+#### 60. How to create a data structure to store the graph
+dictionary, key: is the node, the array stores the neighbours that start from node
+* if directed such as a—>b—>c
+```Python
+dic = {“a”: [b], “b”: [c]}
+```
+* if undirected: such as a <—> b <—> c
+```Python
+dic = {“a”: [b], “b”: [a, c], “c”:[b]}
+```
+
+### C++ and OS
+#### 1. C++ and C
+Cis programming language, C++ supports both procedural and OOP such as overloading, templates, inheritance, virtual functions and friend functions. C++ supports references, C doesn’t. C use scanf() and printf() for input/output while C++ uses stream
+
+#### 2. Linked List and stack
+both are linear data structure
+* stack: push, pop, isempty, LIFO, FILO, static memory allocation, so the size is fixed. Last in First out. Append to the end, pop and pop from the end.
+* linked list: data is not stored in contiguous location, elements are linked using pointers, very fast in insertion and deletion. Each linked list contains a pointer to the next member in the list. Size is not fixed. Two pointers, one pointer: store the value of the variable, the other pointer: store the address of the next node, so there is no restriction in adding a new link list element in between.
+* queue: First in Last out. Append to the end, pop from the beginning
+
+#### 3. Multi-threading and multi-processing
+* multi-threading: shared memory, but need to be careful about writing to and reading from the same memory at the same time. Not interruptible or killable, must run the same executable
+* multi-processing: separate memory, hard to share objects between processing, Child processes are interruptible and killable, sharing data using IPC
+	
+#### 4. Thrashing
+It is a state in which our CPU perform productive work less and swapping more. CPU is busy in swapping pages so much that it can not respond to other user program as much as required
+
+#### 5. Cache write back and write through
+* Cache: the technique of storing a copy of data temporarily in rapidly-accessible storage media
+* Write through: data is written to main memory through cache immediately, so the main memory always has an up-do-date copy of the line. When a read is done, main memory can always reply with the requested date
+* Write back: data is written to the cache and then I/O completion is confirmed.
+
+#### 6. Stack and heap
+* Stack: static memory allocation
+* Heap: dynamic memory 
+
+#### 7. References and pointers
+* Similarity: can be used to change local variables of one function inside another function. Can be used to save copying of big objects when passed as arguments to function or returned from functions
+* Difference: references are less powerful than pointers. (1) once a reference is created, it can not be later made to reference another object. It can not be reseated. (2) reference can not be null while pointers are often made null to indicate that they are not pointing to any valid thing. (3) reference must be initialized when declared. But no restriction in pointers. 
+
+* reference can not be used for implementing data structure such as linked list tree. But in java, no pointers, only reference because no above restrictions.
+* reference are safer (no wild pointers) easier to use
+* difference: pointers: *, reference: &
+
+#### 8. Virtual
+For function overloading (same class name, different parameters type or different return parameters )
+
+#### 9. Pointer
+“this” pointer is a constant pointer holding the address to the current object
+
+#### 10. Difference between java and c++
+* Java: automatic garbage collections, does not support pointers, templates, unions, operation overloading, built-in thread class, only has method overloading, platform independent 
+* C++: destruction, automatically invoked when objects are destroyed, no built-in class, support inheritance, method overloading and operator overloading 
+
+#### 11. Child class is not allowed to access private members of parent
+
+#### 12. Operation overloading and function overloading
+
+#### 13. Copy constructor
+It is a member function which initializes an object using another object of the same class. Such as x = y. It is called when an object is passed by value or when an object is returned by a function or when compiler generates a temporary object. It can be made private.
+
+#### 14. i++ is more expensive than ++i, because i++ makes a copy of the element before incrementing I and then return the copy
+
+#### 15. difference between class and struct
+Struct members are public by default, class members are private
+
+#### 16. static and const
+* Static const: meaningless
+* const: member function which isn’t allowed to modify the members of the object for which it is called	
+* static: member function which can not be called for a specific object
+
+so static const is meaningless because no object is associated with the call
+
+#### 17. Storage class
+a class that specifies the life and scope of its variables and functions. These storage class are supported: auto, static, register, extern, mutable
+
+#### 18. How to avoid conflict when two threads are trying to access one resource
+When two threads are trying to access one resource, it might cause race condition, such as one program try to x = x + 1 and the other tries x = x - 1.
+* mutual exclusion, atomicity is often achieved through mutual exclusion - the constraint that execution of one thread excludes all the others. Using mutex. A thread attempts to lock the mutex then the attempt atomically either succeeds or it blocks the thread that attempted the lock. (critical section) —> starvation, deadlock 
+* semaphore: 锁是服务于共享资源的；而semaphore是服务于多个线程间的执行的逻辑顺序的。c = a + b, c的执行必须要等待a b执行完之后才可以进行，所以需要semaphore进行调度。
+
+#### 19. Polymorphism
+It can be achieved by overriding. It refers to the ability of an object to provide different behaviours depending on its own nature. Same method name, different implementation.  Modifying / replacing the behaviour. Also operation overloading is also related to polymorphism. “+”. Overloading is unrelated to polymorphism, different parameters different types. Because such as when you define a function sum(int a, int b) then later you realize that you need another function that takes float as parameters. So without overloading, you have to remember the name method which is having exact set of parameters. But overloading just make it one name with different parameters.
+
+#### 20. Why polymorphism is necessary?
+It is necessary because let’s say you have a class of People, and 2 derived classes boys and girls. Then when you call the same method, you don’t need to know all the derived class and determine which methods to call. It will call the right method based on the object.
+
+#### 21. Interrupt
+It is a signal from a device attached to a computer or from a program within the computer that requires the os to stop and figure out what to do next. The computer can decide to handle the interrupt first, and remember the state of the currently working program. After it finishes the interrupt it can go back to the current task. Hardware interrupt (no input from keyboard), software interrupt
+
+#### 22. Find a circle in linked list  
+fast slow pointers, if cycle, they will finally meet. Use (while fast and fast.next) for condition, because it there is cycle, then it will terminate the loop, no cycle will terminate the loop too!!
+
+#### 23. What is binary tree?  
+It is a tree data structure that in which node has at most two children, left and right
+
 ### Other
 
 #### 1. PKI: public key infrastructure
@@ -286,3 +419,9 @@ For software development, one difficulty is about setting the environment becaus
 * cd, cd -, pwd, dirs, ls, cat filename.txt, grep, nano, 
 * manipulate files: cp, mv, rm -rf folder, mkdir, chmod, chown  
 * system info: df, free, top, ifconfig
+
+#### 8. Transaction
+Transaction can be defined as a group of tasks. A transaction is a very small unit of a program and it may contain several low-level tasks. A transaction may contain atomicity, consistency, isolation and durability (ACID) properties. 
+
+#### 9. Life cycle of an activity in android
+activity starts —> onCreate() —> onStart() —> onResume() —> activity running —> onPause() —> onStop() —> onDestroy() —> activity shut down
