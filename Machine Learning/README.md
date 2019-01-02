@@ -190,3 +190,91 @@ List all the words appear in all of the documents, and then the first column is 
 
 ##### 47. SVM
 SVM is a discriminative classifier formally defined by a separating hyperplane. Given labeled training data, the algorithm outputs an optimal hyperplane which categorizes new examples. In 2D, the hyperplane is a line dividing a plane in two parts where in each class lay in either side. If it is not linear in a certain dimension, we can use kernel. (Such as a circle) there is no line that can separate the two classes in x-y plane so we apply transformation and add one more dimension as we call it z-axis. Let us assume value of points on z plane, w = x^2 + y^2. Then we have a line. And we transform back the data
+
+##### 48. Boosting
+It is about building a stronger classifier based on some weak classifiers. Which means we have some weak classifiers and then next time, we just increase the weights of those classifiers with high accuracy and decrease the weights of those classifiers with low accuracy. (adjust the weights based on the error of previous model)
+
+##### 49. Gradient boosting
+It is one kind of boosting, but each time it builds a new model based on the gradient decreasing direction of loss function of the previous model. Because if the loss function is large, then this model has low accuracy and then we build model that can decrease this loss function then we are improving the model. GBDT is one of the classical method of gradient boosting. The difference between GBDT and original boosting is calculating the residual.  Since the original boosting use square loss function, it can calculate the residual directly. But Gradient Boosting use general loss function, so it need to use negative gradient for approximating the residual.
+
+#### 50. GBDT
+* Based on residual
+* Based on gradient
+
+But there are basically all based on the gradient
+
+#### 51. Residual
+The difference between the predicted value and real value. Above the regression line, it is positive and below the regression line, it is negative. This is only true when the it is the square loss function. If not, we can use negative gradient to approximate it.
+
+#### 52. Linear regression and svm
+* SVM: find a hyperplane in an n-dimensional space (n is the number of features) that has the maximum margin to distinct the data points. 2 features, a line. 3 features, a 2-dimensional plane.
+* Logistic Regression: we take the output of a linear function and then squash it into [0,1] with sigmoid function. Then if the value larger than a threshold, we assign it label 1 otherwise, 0. It is sensitive to outliers. Logistic loss doesn’t go to zero. Difference between this and linear regression: output continues outcome
+	
+* Difference: logistic regression produces probability while svm produces 1 or 0. The choice of hyperplane is not influenced by support vector. Why it is not popular anymore? 
+
+#### 53. Why svm is not popular anymore?
+* Now data is in different kinds of forms, images, videos, text and so on, they are hardly given as feature-vectors. So you need to do feature extraction which requires lots of expertise in that domains.
+* Xgboost can run faster and beat it
+* If data is not linear, you need to have kernel to model it
+* SVM is originally for binary classification even though you can do the 1-against-all
+
+#### 54. Calculate the sentiment score for each sentence
+For each word, we can refer to the predefined word list such as ANEW which contain the manual score for each word. For a sentence, we might sum up the scores of words inside the sentence, or take the maximum one or by learning using neural network but we need to have the training data such as yelp.
+
+#### 55. Problem of TF-IDF 
+无法捕捉上下文之间的联系
+
+#### 56. Logistic regression can deal with non-linear problem but need to use kernel trick
+
+#### 57. Different loss function
+* 0-1损失函数
+* 平方损失函数(square error loss)
+* 交叉熵损失函数(cross-entropy)
+* Hinge损失函数
+	
+#### 58. Adaboost 通过提升错分数据点的权重来定位模型的不足而gradient boosting通过计算gradient。 Adaboost adaptive原因是基于前一个模型进行调整
+
+#### 59. PCA and SVD
+Both are dimension reduction methods
+* PCA: choose the direction with more information for adjusting, choose the feature vector with maximum feature value
+* SVD: 
+
+#### 60. LSTM中每个gate的作用是什么，为什么跟RNN比起来，LSTM可以防止梯度消失
+* input gate
+* output gate
+* forget gate
+	
+#### 61. GRU
+* update gate: helps the model to determine how much the past information needs to be passed along to the future
+* reset gate: from the model to decide how much of the past information to forget
+
+#### 62. Pooling
+* reduce features
+* reduce parameters
+* keep invariant
+
+#### 63. Why gradient vanishing?
+due to the usage of inappropriate activation function, such as sigmoid. 
+solution: use relu and other kinds of activation function, use batch normalization (help to speed up the training, solve the problem of gradient vanishing and gradient exploding), resnet
+
+#### 64. Gradient exploding
+the initial weights are initialized quite large
+solution: a. Use gradient clip, weights regularization 
+
+#### 65. 神经网络不收敛的11个常见问题
+没有对数据进行归一化, 忘记检查输入和输出, 没有对数据进行预处理, 没有对数据正则化, 使用过大的样本, 使用不正确的学习率, 在输出层使用错误的激活函数, 网络中包含坏梯度, 初始化权重错误, 过深的网络, 隐藏单元数量错误
+
+#### 66. Reinforce learning
+No label but something similar to label: reward, can decide if this decision is good or bad, if good, it knows then next time it will do the same thing again. Continuous trying and making mistakes (iterating). One action executed in a certain sate and then get reward, so that the model know which action is optimal
+	
+#### 67. Transfer learning
+* Feature extractor
+* Fine tune the convNet, not only replace and retrain the classifier but also fine tune some of the layers
+* Pretrained model
+* 两个domain必须是相关的
+
+#### 68. 生成对抗网络(GAN)
+可以帮忙生成数据，提高数据数量。generator, discriminator: to tell if an image is real or generated. For any input, discriminator output 0 - 1 to indicate the probability of this image being real. Optimization process: g fixed, optimize d, then d fixed, optimize g, then continue until converge. It is very sensitive to hyper parameters need to design it very carefully. If the discriminator is trained very well then the generated model will get very worse because it use jensen-shannon distance. However if two distributed sample spaces do not overlap with each other, this distance can not be defined. Use Wasserstein distance (WGAN)
+
+#### 69. Why Svm is better than other
+good generalization ability due to its algorithm. It uses margin, so this is the description of the data distribution. 得到对数据分布的结构化描述，因此减低了对数据规模和数据分布的要求. 它是一个凸优化问题，因此局部最优解一定是全局最优解的优点
