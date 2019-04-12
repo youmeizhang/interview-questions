@@ -329,4 +329,62 @@ It is to update each of the weights in the network so that they cause the output
 * Fine-tuning the ConvNet: replace and retrain the classifier on top of ConvNet on the new dataset, fine-tune the weights of the pertained network by continuing the backpropagation. Maybe fine-tune the last few layers specifically
 * Pretrained models: since it takes a long time to train
 
+#### 84. Bias-Variance Trade off
+* Parametric or linear machine learning algorithms often have a high bias but a low variance.
+* Non-parametric or non-linear machine learning algorithms often have a low bias but a high variance such as KNN and SVM
+* Increasing the bias will decrease the variance
+* Increasing the variance will decrease the bias
+
+#### 85. K-folder cross validation
+* Shuffle the dataset randomly
+* Split the dataset into k groups
+* For each unique group:
+	* Take the group as a hold out or test data set
+	* Take the remaining groups as a training data set
+	* Fit a model on the training set and evaluate it on the test set
+	* Retain the evaluation score and discard the model
+* Summarize the skill of the model using the sample of model evaluation scores
+
+#### 86. VC dimension
+It is a concept that formally quantifies the power of a classification algorithm
+
+#### 87. Union bound
+P(A U B U C) <= P(A) + P(B) + P(C)
+
+#### 88. What would you do if the training loss stays constant?
+* check learning rate see if it is too slow
+* choose correct batch size
+* shuffle the data
+* try to test with a simpler model: fewer layers
+* check the code that the network is constructed properly, such as activation after CNN layer
+* normalization data into range [-0.5, 0.5]. This could make a big difference in training
+
+#### 89. Why RNN has vanishing gradient problem and LSTM doesn’t suffer from this?
+* The gradient carrying information used in RNN parameter updates when the gradient becomes smaller and smaller. The parameter updates become insignificant which means no real learning is done. (The math) It is caused by a long series of multiplications of small values, diminishing the gradients and causing the learning process to become degenerate
+
+* LSTM solves the problem by creating a connection between the forget gate activations and the gradient computation. This connection creates a path for information flow through the forget gate for information that the LSTM should not forget.
+
+#### 90. Gradient clipping or gradient scaling
+They are used to avoid exploding gradients (large update to weights during training can cause a numerical overflow or underflow). Therefore, change the derivative of the error before propagating it backward through the network and use it to update the weights. Gradient scaling is normalizing the error gradient vector such that vector norm equals a defined value
+
+#### 91. Exploding Gradient Problem
+* Exploding gradient could happen in three situation: 
+	* (1) poor choice of learning rate 
+	* (2) poor choice of data preparation, not normalized 
+	* (3) poor choice of loss function. 
+* It is a problem in LSTM because it is given the accumulation of error gradients in the unrolled recurrent structure
+
+#### 92. GAN (generative adversarial network )
+It is unsupervised learning, generator generates the candidates while discriminative network evaluates them
+
+#### 93. How to find the best hyper parameters
+* (1) grid search: define a grid on n dimensions where each of these maps for an hyperparameter. For each dimension, define the range of possible value and then search for all the possible configurations and wait for the results to establish the best one. It suffers from curse of dimensionality. More dimension can explode the search in time complexity normally by an exponential factor. Usually uses this when n is less than 4
+* (2) random search: difference with grid search in step 1, random search picks the point randomly from the configuration space. We can explore hyper parameters space more widely with Random search (especially for the more important variables) and this help us to find the best configuration in fewer iterations.
+* (3) Bayesian optimization: both grid search and random search have same downside: each new guess is independent from the previous run. 
+
+#### 94. L1-regularization vs. L2-regularization
+* difference: penalty term
+* l1: absolute value of magnitude, very large value will make coefficients zero hence it will under-fit
+* l2: squared magnitude. If lambda is very large then it will add too much weight and it will lead to under-fitting. This works very well to avoid over-fitting issue
+* key difference: l1 shrinks the less important features’s coefficient to zero thus removing some features altogether, so this works well for feature selection in case we have a huge number of features.
 
