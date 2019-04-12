@@ -425,3 +425,6 @@ Transaction can be defined as a group of tasks. A transaction is a very small un
 
 #### 9. Life cycle of an activity in android
 activity starts —> onCreate() —> onStart() —> onResume() —> activity running —> onPause() —> onStop() —> onDestroy() —> activity shut down
+
+#### 10. Heap
+Priority queue is often referred as heap. The parent node’s value is always larger than or equal to the child’s value (max heap). In heap, the highest (or lowest) priority element is always stored at the root.
