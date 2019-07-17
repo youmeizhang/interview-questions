@@ -52,7 +52,15 @@
   
 * Counter based:
   - single host: counter as maintainer, when get request from different worker host, it returns counter to it and then increase itself, so each worker host get unique counter. But single node, fail easily
-  - all host: every host tries to maintain the counter 
+  - all host: every host tries to maintain the counter, high pobability of colision
+  - range based: no colision, each worker host is in different range
+  
+* Steps:
+  - long url comes, it goes to Load Balancer
+  - goes to worker host
+  - zookeeper checks if the range exhausts otherwise assign new range
+  - store tiny and long URL into DB, at the same time, store in distributed cache as well
+  - if it is short url then it goes to check cache first, otherwise goes to DB
   
 ##### Layers  
 * Application layer
@@ -60,4 +68,31 @@
 
 * Persistence layer
 
+## 4. Twitter
+(credit to: http://blog.gainlo.co/index.php/2016/02/17/system-design-interview-question-how-to-design-twitter-part-1/)
 
+##### Data Modeling
+* user object: user can follow each other
+* feed object: each feed has a user owner
+
+##### Serve Feeds
+* fetch feeds from all the people that you follow and render them by time
+  - improve: each time only fetch most recent N feeds instead of all of them or Cache
+  
+* detect fake users
+  - ML
+  
+* @feature and retweet feature
+  - @feature: store a list of user IDs inside each feed, so when rendering your feeds, you should also include feeds that have your ID in its @ list
+  - retweet feature: inside each feed, a feed ID (pointer) is stored which indicates the original post
+  
+* trending topics
+  - get the most frequent hashtags over the last N hours
+  
+* who to follow
+  - search through users' following graph and people within 2 or 3 steps or famous account
+  
+* search engine
+  - crawling
+  - index
+  - retrieval and ranking
