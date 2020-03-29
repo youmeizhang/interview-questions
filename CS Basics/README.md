@@ -87,8 +87,12 @@ fast slow pointers, if cycle, they will finally meet. Use (while fast and fast.n
 #### 23. What is binary tree?  
 It is a tree data structure that in which node has at most two children, left and right
 
-#### 24. Tail recursion
-Difference between Tail Recursion and other recursion is how they utilize memory. Tail Recursion use constant memory while other resursion grow linearly with n. Memory for `recsum` grows.  
+#### 24. Process and procedure
+process: computation
+procedure: function
+
+#### 25. Tail recursion
+`It will execute an iterative process in constant space even if the iterative process is described by a recursive procedure. An implementation with this property is called tail-recursive`. Difference between Tail Recursion and other recursion is how they utilize memory. Tail Recursion use constant memory while other resursion grow linearly with n. Memory for `recsum` grows.  
 ```Python
 def recsum(x):
 	if x == 1:
