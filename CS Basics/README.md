@@ -24,8 +24,10 @@ It is a state in which our CPU perform productive work less and swapping more. C
 * Write back: data is written to the cache and then I/O completion is confirmed.
 
 #### 6. Stack and heap
-* Stack: static memory allocation
-* Heap: dynamic memory 
+* Stack: static memory allocation. Variables allocated on the stack are stored directly to the memory and access to this memory is very fast. LIFO. You can use Stack if you know exactly how much data you need to allocate before compile time and it is not too big.
+* Heap: dynamic memory. Variables allocated on the heap have their memory allocated at run time and accessing to memory is slow. You can allocate a block at any time and free it at any time. This makes it complex to keep track of which parts of the heap are allocated or free at any given time 
+
+In a multi-threaded situation each thread will have its own compeletely independent stack bu they will share the heap. Stack is thread specific and Heap is application specific
 
 #### 7. References and pointers
 * Similarity: can be used to change local variables of one function inside another function. Can be used to save copying of big objects when passed as arguments to function or returned from functions
