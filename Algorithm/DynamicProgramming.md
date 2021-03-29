@@ -72,5 +72,14 @@ return dp[n][m]
 #### 4. O(n)
 Solution of a subproblem (A[i->j]), a sub-array of the input
 找k作为分割点
+```
+dp = new int[n][m]
 
+for l = 1 to n # problem size
+  for i = 1 to n - l + 1 # sub-problem start
+    j = i + l - 1 # sub-problem end
+    for k = i to j # try all possible break points
+      dp[i][j] = max(dp[i][j], f(dp[i][k], dp[k][j])) # merge two sub-problems
+return dp[1][n]
+```
 
