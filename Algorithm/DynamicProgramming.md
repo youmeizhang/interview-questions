@@ -71,7 +71,9 @@ return dp[n][m]
 
 #### 4. O(n)
 Solution of a subproblem (A[i->j]), a sub-array of the input
-找k作为分割点
+找k作为分割点 <br>
+Time complexity: O(n^3) <br>
+Space complexity: O(n^2)
 ```
 dp = new int[n][m]
 
@@ -82,4 +84,15 @@ for l = 1 to n # problem size
       dp[i][j] = max(dp[i][j], f(dp[i][k], dp[k][j])) # merge two sub-problems
 return dp[1][n]
 ```
-
+#### 2.1 O(mn)
+dp[i][j] solutions of A[0->i][0->j] <br>
+each subproblem depends on O(1) subproblems <br>
+Time complexity: O(mn) <br>
+Space complexity: O(mn)
+```
+dp = new int[n][m]
+for i = 1 to n: # row top -> bottom
+  for j = 1 to m: # col left -> right
+    dp[i][j] = f(dp[i-1][j], dp[i][j-1])
+return dp[n][m] / max(dp[n])
+```
