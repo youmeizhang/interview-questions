@@ -6,3 +6,8 @@ SSL: Secure Sockets Layer, keeping an internet connection secure and safeguardin
 TLS: transport layer security
 
 HTTPS: a website is secured by a SSL certificate
+
+#### TCP 3-way handshake
+* Client sends a segment with SYN to server and informs the server about the client should start communication
+* Server responses to client with SYN-ACK signal set
+* Client acknowledges response from server and they both create a stable connection
