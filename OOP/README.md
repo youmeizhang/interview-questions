@@ -51,6 +51,11 @@ In C++, we can make operators to work for user defined classes. For example, we 
 #### 17. Abstract class
 Use Abstract class when there is a 'IS-A' relationship between classes. For example, Lion is a Animal, Cat is an Animal. So, Animal can be an abstract class with common implementation like no. of legs, tail etc. An abstract class is a class which cannot be instantiated. Creation of an object is not possible with an abstract class, but it can be inherited. An abstract class can contain only Abstract method. Java allows only abstract method in abstract class while for other languages allow non-abstract method as well.
 
+* An abstract class is a good choice if we are using the inheritance concept since it provides a common base class implementation to derived classes
+* If we want to add new methods in the future, then an abstract class is a better choice. Because if we add new methods to an interface, then all of the classes that already implemented that interface will have to be changed to implement the new methods
+* Abstract classes have the advantage of allowing better forward compatibility. Once clients use an interface, we cannot change it; if they use an abstract class, we can still add behavior without breaking the existing code
+* If we want to provide common, implemented functionality among all implementations of our component, use an abstract class. Abstract classes allow us to partially implement our class, whereas interfaces contain no implementation for any members
+
 #### 18. Ternary Operator
 The ternary operator is also known as the conditional operator. This operator consists of three operands and is used to evaluate Boolean expressions. The goal of the operator is to decide, which value should be assigned to the variable. The operator is written as: variable x = (expression) ? value if true: value if false
 
@@ -66,6 +71,10 @@ Method overriding is a feature that allows a subclass to provide the implementat
 
 #### 22. Interface
 An interface is a collection of an abstract method. If the class implements an inheritance, and then thereby inherits all the abstract methods of an interface.
+
+* Interfaces are best suited for providing a common functionality to unrelated classes
+* Interfaces are a good choice when we think that the API will not change for a while
+
 
 #### 23. Exception handling
 An exception is an event that occurs during the execution of a program. Exceptions can be of any type – Runtime exception, Error exceptions. Those exceptions are adequately handled through exception handling mechanism like try, catch and throw keywords.
