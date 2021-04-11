@@ -96,3 +96,17 @@ for i = 1 to n: # row top -> bottom
     dp[i][j] = f(dp[i-1][j], dp[i][j-1])
 return dp[n][m] / max(dp[n])
 ```
+
+#### 2.2 O(mn)
+dp[k][i][j] := sum of (A[0->i][0->j]) after k steps, each subproblems depends on O(1) subproblems <br>
+Time complexity: O(kmn) <br>
+Space complexity: O(kmn) -> O(mn)
+```
+dp = new int[K][n][m] # init a 3D array
+
+for k = 1 to K: # steps / problem size
+  for i = 1 to n:
+    for j = 1 to m:
+      dp[k][i][j] = f(dp[k-1][i+di][j+dj])
+return dp[K][n][m] / g(dp[K])
+```
