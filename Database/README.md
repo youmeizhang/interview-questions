@@ -39,3 +39,10 @@ It is a database architecture pattern related to horizontal partitioning. It sep
 * Implementing caching
 * Creating one or more read replicas
 * Upgrading to a larger server
+
+#### redis如何解决热点问题
+1. 对于“get”类型的热点key，通常可以为redis添加slave，通过slave承担读压力来缓解
+2. 服务端本地缓存，服务端先请求本地缓存，缓解redis压力
+3. 多级缓存方案，通过多级请求，层层过滤解决热点key问题
+4. proxy方案，有些方案会探测分片热点key，缓存在proxy上缓解redis压力
+5. 同解决big方案类似，将一个key通过hash分解为多个key，value值一样，将这些key分散到集群多个分片中，需要访问时先根据hash算出对应的key，然后访问的具体的分片
